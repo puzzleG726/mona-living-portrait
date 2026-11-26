@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="与蒙娜丽莎对话，一件基于历史资料的数字艺术交互实验。">
+  <title>MONA · 画中来信</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%232b5942'/%3E%3Cpath d='M10 29Q8 7 30 9Q33 29 10 29M11 28L25 14' stroke='%23d9e8b4' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./gallery.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="MONA 首页">MONA<span class="brand-dot"> / </span><small>THE LIVING PORTRAIT</small></a>
+    <span class="top-caption">AN ENCOUNTER ACROSS FIVE CENTURIES</span>
+    <div class="top-actions"><span class="prototype">数字艺术实验</span><button id="settingsBtn" class="icon-button" aria-label="打开演示设置">⚙</button></div>
+  </header>
+  <main class="workspace">
+    <aside class="exhibition-panel">
+      <div class="eyebrow"><span class="tiny-line"></span> GALLERY 001 / LEONARDO DA VINCI</div>
+      <h1>画中来信<span class="title-dot">。</span></h1>
+      <p class="intro">在目光与微笑之间，<br>听见一幅画的回应。</p>
+      <div class="section-label"><span>从一个细节开始</span><span>01 — 03</span></div>
+      <nav id="exhibits" aria-label="选择展项"></nav>
+      <div class="exhibition-foot"><span class="foot-cross">+</span><p>历史资料之上的艺术性重构<br><span>NOT AN OFFICIAL MUSEUM EXPERIENCE</span></p></div>
+    </aside>
+    <section class="stage" aria-label="二维交互肖像">
+      <div class="stage-top"><span class="live-pill"><i></i> LA GIOCONDA / LIVING PORTRAIT</span><button id="sampleBtn" class="film-button" title="播放神经网络生成的固定语音样片">▷ MuseTalk 样片</button><button id="filmBtn" class="film-button" aria-pressed="false">↗ 纯净展示</button></div>
+      
+      <span class="coordinate coordinate-left">LEONARDO DA VINCI · C. 1503–1519</span>
+      <div id="avatarCanvas" class="avatar-canvas"></div>
+      <div id="renderError" class="render-error" hidden>画像未能加载，请刷新重试。</div>
+      <div class="specimen-label"><span>LISA GHERARDINI</span><strong>La Joconde</strong><p>列奥纳多·达·芬奇 / 白杨木板油画</p></div>
+      <div class="character-tag"><i></i><span>2D 交互肖像<br><b>原画与语音</b></span></div>
+      <div class="stage-bottom"><span id="avatarState" role="status">画作静候你的提问</span><span class="stage-index">INV. 779</span></div>
+      <button id="exitFilm" class="exit-film" hidden>退出展示 Esc</button>
+    </section>
+    <section class="conversation-panel" aria-label="导览对话">
+      <div class="conversation-head"><div><div class="eyebrow">A CONVERSATION WITH LISA</div><h2>与莉萨对话</h2></div><button id="resetBtn" class="icon-button" aria-label="重置对话">↺</button></div>
+      <div class="mode-row"><span id="modeBadge" class="mode-badge">在线展览 · 预设导览</span><span id="connectionNote">AI 完整版运行于本机</span></div>
+      <div id="chat" class="chat" role="log" aria-live="polite" aria-relevant="additions"></div>
+      <div class="suggestion-label">从一个问题开始</div>
+      <div id="suggestions" class="suggestions"><button data-prompt="你好，请介绍你自己">你是谁，莉萨？ <span>↗</span></button><button data-prompt="你为什么微笑？">你为什么微笑？ <span>↗</span></button><button data-prompt="达·芬奇是怎样画出这幅肖像的？">这幅画是怎样诞生的？ <span>↗</span></button></div>
+      <form id="chatForm" class="composer"><label class="sr-only" for="messageInput">向莉萨提问</label><textarea id="messageInput" rows="2" maxlength="1000" placeholder="从身份、微笑或画作的来历开始…"></textarea><div class="composer-tools"><button id="micBtn" type="button" class="text-button" aria-label="语音输入仅在本地完整版提供" title="语音识别需要本地完整版" disabled>语音输入 · 本地版</button><button id="sendBtn" type="submit" class="send-button" aria-label="发送问题">↑</button></div></form>
+      <div class="conversation-footer"><button id="voiceBtn" class="text-button" >▷ 播放 MuseTalk 样片</button><button id="playReplyBtn" class="text-button" hidden>播放回答</button><button id="stopBtn" class="text-button" disabled>停止回答</button></div>
+      <p id="notice" class="notice" role="status"></p>
+    </section>
+  </main>
+  <footer class="bottom-bar"><span>AN INDEPENDENT ART & AI STUDY</span><div class="gesture-controls" aria-label="测试人物动作"><a href="https://collections.louvre.fr/en/ark:/53355/cl010062370" target="_blank" rel="noreferrer">史料 / 卢浮宫藏品档案 ↗</a></div><span>AFTER LEONARDO DA VINCI <span class="footer-star">✳</span></span></footer>
+  <dialog id="settingsDialog"><div class="dialog-header"><h2>关于这个展览</h2><button id="closeSettings" class="icon-button" aria-label="关闭设置">×</button></div><p>MONA · 画中来信是一件以《蒙娜丽莎》为载体的数字艺术交互实验，不属于卢浮宫官方体验。</p><div class="config-note"><strong>当前为在线作品集版</strong><br>可体验预设历史导览、MuseTalk 口型样片和纯净展示。导览文字采用预设内容；样片为预先生成，不随每次问题变化。</div><p>完整版本支持 Ollama 自由对话、Whisper 语音识别、神经语音与逐轮 MuseTalk 口型。这些功能需要运行模型服务，未包含在静态网页托管中。</p><p class="technical-note">原画：Leonardo da Vinci / C2RMF，公有领域。历史依据：卢浮宫藏品档案。口型生成：MuseTalk 1.5，Mac Metal；音色：微软中文神经语音。人物身份为基于史料的艺术性重构。</p><div class="settings-actions"><button id="exportBtn" class="outline-button">导出本次导览记录</button><button id="applySettings" class="primary-button">返回展览</button></div></dialog>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
